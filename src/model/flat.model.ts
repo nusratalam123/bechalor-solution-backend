@@ -64,26 +64,32 @@ const flatSchema = new mongoose.Schema(
       flat_roomImg: {
         type: String,
         required: true,
+        validate: [validator.isURL, "Please provide a valid url"],
       },
       flat_washRoomImg: {
         type: String,
         required: true,
+        validate: [validator.isURL, "Please provide a valid url"],
       },
       flat_kitchenRoomImg: {
         type: String,
         required: true,
+        validate: [validator.isURL, "Please provide a valid url"],
       },
       flat_coridoorImg: {
         type: String,
         required: true,
+        validate: [validator.isURL, "Please provide a valid url"],
       },
       flat_drawingRoomImg: {
         type: String,
         required: true,
+        validate: [validator.isURL, "Please provide a valid url"],
       },
       flat_dainingRoomImg: {
         type: String,
         required: true,
+        validate: [validator.isURL, "Please provide a valid url"],
       },
       flat_currentBill: {
         type: String,
