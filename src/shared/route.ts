@@ -1,10 +1,8 @@
 import { Router } from "express";
 import authRoutes from "./../routes/auth.route";
-import categoryRoutes from "./../routes/category.route";
-import couponRoutes from "./../routes/coupon.route";
-import socialRoutes from "./../routes/social.route";
+
 import userRoutes from "./../routes/user.route";
-import blogRoutes from "./../routes/blog.route";
+import messRoutes from "./../routes/mess.route";
 
 const router = Router();
 
@@ -16,10 +14,7 @@ router.get("/", (_, res) => {
 // general Routes
 router.use("/auth", authRoutes);
 router.use("/user", userRoutes);
-router.use("/category", categoryRoutes);
-router.use("/coupon", couponRoutes);
-router.use("/social", socialRoutes);
-router.use("/blog", blogRoutes);
+router.use("/mess", messRoutes);
 
 // Handle not found
 router.use((req, res, next) => {

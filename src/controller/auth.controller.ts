@@ -12,7 +12,7 @@ export const signup = async (
     const user = await User.findOne({ email: email });
 
     if (user) {
-      res.status(401).json({
+      res.status(400).json({
         message: "email already exist",
       });
     }
@@ -42,7 +42,7 @@ export const login = async (
     const { email, password } = req.body;
 
     if (!email || !password) {
-      return res.status(401).json({
+      return res.status(400).json({
         message: "Please provide your credentials",
       });
     }
@@ -50,7 +50,7 @@ export const login = async (
     const user = await User.findOne({ email });
 
     if (!user) {
-      return res.status(401).json({
+      return res.status(400).json({
         message: "No user found. Please create an account",
       });
     }
@@ -65,7 +65,7 @@ export const login = async (
     }
 
     if (user.status === "BANNED") {
-      return res.status(401).json({
+      return res.status(400).json({
         message: "The user is banned",
       });
     }
@@ -73,17 +73,22 @@ export const login = async (
     const token = generateToken(user);
     const { password: pwd, ...info } = user.toObject();
 
-    res.status(200).json({
-      message: "Successfully logged in",
-      data: {
-        token: token,
-        info: info,
-      },
-    });
+    return res
+      .cookie("auth_token", token, {
+        secure: true,
+        sameSite: "none",
+        path: "/"
+      })
+      .status(200)
+      .json({
+        message: "Logged in successfully",
+        data: info
+      });
   } catch (err) {
     next(err);
   }
 };
+
 
 // // confirmEmail
 // export const confimEmail = async (

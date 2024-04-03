@@ -29,7 +29,7 @@ export const getSingleUser = async (
     const user = await User.findOne({ _id: req.params.id });
 
     if (!user) {
-      res.status(401).json({
+      res.status(400).json({
         message: "User Not found",
       });
     }
@@ -76,15 +76,15 @@ export const createUser = async (
   try {
     const data = req.body;
 
-    if (!data) {
-      res.status(401).json({
+    if (Object.keys(data).length === 0) {
+      res.status(400).json({
         message: "Data can't be empty",
       });
     }
 
     const user = await User.create(data);
 
-    res.status(200).json({
+    res.status(201).json({
       message: "User created Successfully",
       data: user,
     });
@@ -104,7 +104,7 @@ export const updateUserProfile = async (
     const user = await User.findById(userId);
 
     if (!user) {
-      res.status(401).json({
+      res.status(400).json({
         message: "User not found",
       });
     }
@@ -130,7 +130,7 @@ export const deleteUser = async (
     const user = await User.findByIdAndDelete(req.params.id);
 
     if (!user) {
-      res.status(401).json({
+      res.status(400).json({
         message: "User not found",
       });
     }
@@ -157,7 +157,7 @@ export const updateUserStatus = async (
     );
 
     if (!user) {
-      res.status(401).json({
+      res.status(400).json({
         message: "User not found",
       });
     }
