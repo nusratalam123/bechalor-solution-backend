@@ -1,35 +1,38 @@
 import { Router } from "express";
 import {
-//   createUser,
-//   deleteUser,
+  createMessPost,
+  deleteMessPost,
   getAllMessPosts,
-//   getSingleUser,
-//   getSingleUserStatus,
-//   updateUserProfile,
-//   updateUserStatus,
+  getSinglePost,
+  getAllPostSearchByArea,
+  getAllPostSearchByAmmount,
+  updateMessPost
 } from "../controller/mess.controller";
 
 const router = Router();
 
 // get all mess post
-router.get("/all", getAllMessPosts);
+router.get("/allPost", getAllMessPosts);
 
-// // get single user
-// router.get("/single/:id", getSingleUser);
+// get single mess post 
+router.get("/singlePost/:id", getSinglePost);
 
-// //get single user status
-// router.get("/single/status/:id", getSingleUserStatus);
+// get all mess post serach by area
+router.get("/allAreaPosts/:area", getAllPostSearchByArea);
 
-// // create new user
-// router.post("/create", createUser);
+// get all mess post serach by Ammount
+router.get("/allAmmountPosts/:ammount", getAllPostSearchByAmmount);
 
-// // update user profile
-// router.put("/update-profile/:id", updateUserProfile);
+// get all mess post serach by date
+//router.get("/single/:date",  getAllPostSearchByDate);
 
-// // update user status
-// router.patch("/change-status/:id", updateUserStatus);
+// create new mess post
+router.post("/create", createMessPost);
 
-// //delete user
-// router.delete("/delete/:id", deleteUser);
+ // update mess post
+ router.put("/update-MessPost/:id", updateMessPost);
+
+//delete mess post
+ router.delete("/delete/:id", deleteMessPost);
 
 export default router;
