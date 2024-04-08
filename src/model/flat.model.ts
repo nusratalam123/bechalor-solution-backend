@@ -12,6 +12,10 @@ const flatSchema = new mongoose.Schema(
         type: String,
         required: true,
       },
+      post_secondmobileNumber: {
+        type: String,
+        required: true,
+      },
       post_Img: {
         type: String,
         required: true,
