@@ -4,6 +4,7 @@ import authRoutes from "./../routes/auth.route";
 import userRoutes from "./../routes/user.route";
 import messRoutes from "./../routes/mess.route";
 import flatRoutes from "./../routes/flat.route";
+import womenChefRoutes from "./../routes/womenChef.route";
 
 const router = Router();
 
@@ -17,6 +18,7 @@ router.use("/auth", authRoutes);
 router.use("/user", userRoutes);
 router.use("/mess", messRoutes);
 router.use("/flat", flatRoutes);
+router.use("/womenChef",womenChefRoutes);
 
 // Handle not found
 router.use((req, res, next) => {
