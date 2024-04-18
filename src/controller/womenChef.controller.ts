@@ -2,7 +2,7 @@ import { NextFunction, Request, Response } from "express";
 import User from "./../model/womenChef.model";
 
 // get all users
-export const getAllWomenChefs = async (
+export const getAllWomenChefPosts = async (
   _: Request,
   res: Response,
   next: NextFunction,
@@ -11,7 +11,7 @@ export const getAllWomenChefs = async (
     const users = await User.find({}).sort({ name: -1 });
 
     res.status(200).json({
-      message: "Users get successfully",
+      message: "women chef posts create successfully",
       data: users,
     });
   } catch (err) {
@@ -20,7 +20,7 @@ export const getAllWomenChefs = async (
 };
 
 // get single user
-export const getSingleWomenChef = async (
+export const getSingleWomenChefPost = async (
   req: Request,
   res: Response,
   next: NextFunction,
@@ -30,12 +30,12 @@ export const getSingleWomenChef = async (
 
     if (!user) {
       res.status(400).json({
-        message: "User Not found",
+        message: "Women chef post Not found",
       });
     }
 
     res.status(200).json({
-      message: "User get successfully",
+      message: "Women chef post get successfully",
       data: user,
     });
   } catch (err) {
@@ -85,7 +85,7 @@ export const createWomenChef = async (
     const user = await User.create(data);
 
     res.status(201).json({
-      message: "User created Successfully",
+      message: "womenChef post created Successfully",
       data: user,
     });
   } catch (err) {
@@ -94,7 +94,7 @@ export const createWomenChef = async (
 };
 
 // update a profile
-export const updateUserProfile = async (
+export const updateWomenChefProfile = async (
   req: Request,
   res: Response,
   next: NextFunction,
@@ -121,7 +121,7 @@ export const updateUserProfile = async (
 };
 
 // delete user
-export const deleteUser = async (
+export const deleteWomenChefPost = async (
   req: Request,
   res: Response,
   next: NextFunction,
@@ -131,12 +131,12 @@ export const deleteUser = async (
 
     if (!user) {
       res.status(400).json({
-        message: "User not found",
+        message: "Women chef post not found",
       });
     }
 
     res.status(200).json({
-      message: "User Deleted Successfully",
+      message: "Women chef post Deleted Successfully",
     });
   } catch (err) {
     next(err);
@@ -150,13 +150,13 @@ export const updateUserStatus = async (
   next: NextFunction,
 ) => {
   try {
-    const user = await User.findByIdAndUpdate(
+    const womenChefPost = await User.findByIdAndUpdate(
       req.params.id,
       { $set: { status: req.body.status } },
       { new: true },
     );
 
-    if (!user) {
+    if (!womenChefPost) {
       res.status(400).json({
         message: "User not found",
       });
@@ -164,7 +164,7 @@ export const updateUserStatus = async (
 
     res.status(200).json({
       message: "Status changed successfully",
-      data: user,
+      data: womenChefPost,
     });
   } catch (err) {
     next(err);

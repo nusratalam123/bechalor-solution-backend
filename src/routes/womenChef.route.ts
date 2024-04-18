@@ -1,32 +1,32 @@
 import { Router } from "express";
 import {
   createWomenChef,
-  deleteUser,
-  getAllWomenChefs,
-  getSingleWomenChef,
+  deleteWomenChefPost,
+  getAllWomenChefPosts,
+  getSingleWomenChefPost,
   getSingleUserStatus,
-  updateUserProfile,
+  updateWomenChefProfile,
   updateUserStatus,
 } from "../controller/womenChef.controller";
 
 const router = Router();
 
 // get all womenChefs post
-router.get("/all", getAllWomenChefs);
+router.get("/all", getAllWomenChefPosts);
 
 // get single womenChef Post
-router.get("/single/:id", getSingleWomenChef);
+router.get("/single/:id", getSingleWomenChefPost);
 
 // create new womenChef Post
 router.post("/create", createWomenChef);
 
 // update womenChef profile
-router.put("/update-profile/:id", updateUserProfile);
+router.put("/update-profile/:id", updateWomenChefProfile);
 
 // update user status
 router.patch("/change-status/:id", updateUserStatus);
 
 //delete user
-router.delete("/delete/:id", deleteUser);
+router.delete("/delete/:id", deleteWomenChefPost);
 
 export default router;
