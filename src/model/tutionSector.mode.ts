@@ -20,7 +20,7 @@ const tutionSchema = new mongoose.Schema(
         type: String,
         required: true,
       },
-      student_number: {
+      numberOfStudent: {
         type: String,
         required: true,
       },
