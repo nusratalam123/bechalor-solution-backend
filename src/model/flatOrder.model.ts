@@ -1,5 +1,3 @@
-import { ObjectId } from "bson";
-
 import mongoose from "mongoose";
 import validator from "validator";
 
@@ -42,11 +40,11 @@ const flatOrderSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    Relation_with_guardian: {
+    relation_with_guardian: {
       type: String,
       required: true,
     },
-    Relegion: {
+    relegion: {
       type: String,
       required: true,
     },
