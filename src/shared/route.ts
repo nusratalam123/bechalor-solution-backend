@@ -1,10 +1,17 @@
 import { Router } from "express";
 import authRoutes from "./../routes/auth.route";
-import userRoutes from "./../routes/user.route";
-import messRoutes from "./../routes/mess.route";
 import flatRoutes from "./../routes/flat.route";
-import womenChefRoutes from "./../routes/womenChef.route";
+import flatBookedRoutes from "./../routes/flatBooking.route";
+import messRoutes from "./../routes/mess.route";
+import messBookedRoutes from "./../routes/messOrder.route";
 import tutionRoutes from "./../routes/tution.route";
+import userRoutes from "./../routes/user.route";
+import womenChefRoutes from "./../routes/womenChef.route";
+import womenBookedRoutes from "./../routes/womenChefBooking.route";
+import vehicleBookedRoutes from "./../routes/vehicleBooked.route";
+import tutionBookedRoutes from "./../routes/tutionBooked.route";
+
+
 
 const router = Router();
 
@@ -20,6 +27,12 @@ router.use("/mess", messRoutes);
 router.use("/flat", flatRoutes);
 router.use("/womenChef", womenChefRoutes);
 router.use("/tution", tutionRoutes);
+router.use("/mess-book", messBookedRoutes);
+router.use("/flat-book", flatBookedRoutes);
+router.use("/womenChef-book", womenBookedRoutes);
+router.use("/vehicle-book", vehicleBookedRoutes);
+router.use("/tution-book", tutionBookedRoutes);
+
 
 // Handle not found
 router.use((req, res, next) => {
