@@ -8,7 +8,7 @@ export const getAllTutionBookedPosts = async (
   next: NextFunction,
 ) => {
   try {
-    const BookedPosts = await TutionBooked.find({}).sort({ name: -1 });
+    const BookedPosts = await TutionBooked.find({}).sort({ createdAt: -1 });
 
     res.status(200).json({
       message: "Tution booked posts create successfully",

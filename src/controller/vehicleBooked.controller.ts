@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 import VehicleBook from "./../model/vehicleBooked.model";
 
-// get all vehicle  booking post
+// get all vehicle  booked post
 export const getAllVehicleBookingPosts = async (
   _: Request,
   res: Response,
@@ -11,7 +11,7 @@ export const getAllVehicleBookingPosts = async (
     const bookedPosts = await VehicleBook.find({});
 
     res.status(200).json({
-      message: "Vehicle  booking posts get successfully",
+      message: "Vehicle  booked posts get successfully",
       data: bookedPosts,
     });
   } catch (err) {
@@ -19,7 +19,7 @@ export const getAllVehicleBookingPosts = async (
   }
 };
 
-// get single vehicle  booking post
+// get single vehicle  booked post
 export const getSingleVehicleBookingPost = async (
   req: Request,
   res: Response,
@@ -29,12 +29,12 @@ export const getSingleVehicleBookingPost = async (
     const bookedPost = await VehicleBook.findOne({ _id: req.params.id });
     if (!bookedPost) {
       res.status(400).json({
-        message: "Vehicle  booking Post Not found",
+        message: "Vehicle  booked Post Not found",
       });
     }
 
     res.status(200).json({
-      message: "vehicle booking post get successfully",
+      message: "Vehicle booked post get successfully",
       data: bookedPost,
     });
   } catch (err) {
@@ -42,7 +42,7 @@ export const getSingleVehicleBookingPost = async (
   }
 };
 
-// get single vehicle  booking post search by area
+// get single vehicle  booked post search by area
 export const getAllVehicleBookingPostSearchByArea = async (
   req: Request,
   res: Response,
@@ -55,21 +55,21 @@ export const getAllVehicleBookingPostSearchByArea = async (
     if (!area) {
       return res
         .status(400)
-        .json({ message: "Missing search vehicle booking post" });
+        .json({ message: "Missing search vehicle booked post" });
     }
 
-    const posts = await VehicleBook.find({ booking_area: area }); // Find by type
+    const BookedPost= await VehicleBook.find({ booking_area: area }); // Find by type
 
     res.status(200).json({
-      message: "vehicle booking post get successfully",
-      data: posts,
+      message: "Vehicle booked post get successfully",
+      data: BookedPost,
     });
   } catch (err) {
     next(err);
   }
 };
 
-// create new vehicle booking Post
+// create new vehicle booked Post
 export const createVehicleBookingPost = async (
   req: Request,
   res: Response,
@@ -87,7 +87,7 @@ export const createVehicleBookingPost = async (
     const bookedPost = await VehicleBook.create(data);
 
     res.status(201).json({
-      message: "Vehicle booking post created Successfully",
+      message: "Vehicle booked post created Successfully",
       data: bookedPost,
     });
   } catch (err) {
@@ -95,7 +95,7 @@ export const createVehicleBookingPost = async (
   }
 };
 
-// update a vehicle  booking Post
+// update a vehicle  booked Post
 export const updateVehicleBookingPost = async (
   req: Request,
   res: Response,
@@ -107,7 +107,7 @@ export const updateVehicleBookingPost = async (
 
     if (!bookedPost) {
       res.status(400).json({
-        message: "Mess booking post not found",
+        message: "Vehicle booked post not found",
       });
     }
 
@@ -117,7 +117,7 @@ export const updateVehicleBookingPost = async (
     );
 
     res.status(200).json({
-      message: "Vehicle booking post updated successfully",
+      message: "Vehicle booked post updated successfully",
       data: updatedBookedPost,
     });
   } catch (err) {
@@ -125,7 +125,7 @@ export const updateVehicleBookingPost = async (
   }
 };
 
-// delete vehicle  booking Post
+// delete vehicle  booked Post
 export const deletevehicleBookingPost = async (
   req: Request,
   res: Response,
@@ -136,12 +136,12 @@ export const deletevehicleBookingPost = async (
 
     if (!bookedPost) {
       res.status(400).json({
-        message: "Vehicle booking post not found",
+        message: "Vehicle booked post not found",
       });
     }
 
     res.status(200).json({
-      message: "Vehicle booking Post Deleted Successfully",
+      message: "Vehicle booked Post Deleted Successfully",
     });
   } catch (err) {
     next(err);

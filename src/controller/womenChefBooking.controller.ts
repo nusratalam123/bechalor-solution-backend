@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 import WomenChefBook from "../model/womenChefBook.model";
 
-// get all women-chef booking post
+// get all women-chef booked post
 export const getAllWomenChefBookingPosts = async (
   _: Request,
   res: Response,
@@ -19,7 +19,7 @@ export const getAllWomenChefBookingPosts = async (
   }
 };
 
-// get single  women-chef booking post
+// get single  women-chef booked post
 export const getSingleWomenChefBookingPost = async (
   req: Request,
   res: Response,
@@ -29,12 +29,12 @@ export const getSingleWomenChefBookingPost = async (
     const bookedPost = await WomenChefBook.findOne({ _id: req.params.id });
     if (!bookedPost) {
       res.status(400).json({
-        message: " Women-chef booking Post Not found",
+        message: " Women-chef booked Post Not found",
       });
     }
 
     res.status(200).json({
-      message: "Women-chef booking post get successfully",
+      message: "Women-chef booked post get successfully",
       data: bookedPost,
     });
   } catch (err) {
@@ -42,7 +42,7 @@ export const getSingleWomenChefBookingPost = async (
   }
 };
 
-// create new  women-chef booking Post
+// create new  women-chef booked Post
 export const createWomenChefBookingPost = async (
   req: Request,
   res: Response,
@@ -60,7 +60,7 @@ export const createWomenChefBookingPost = async (
     const bookedPost = await WomenChefBook.create(data);
 
     res.status(201).json({
-      message: "Women-chef booking post created Successfully",
+      message: "Women-chef booked post created Successfully",
       data: bookedPost,
     });
   } catch (err) {
@@ -68,7 +68,7 @@ export const createWomenChefBookingPost = async (
   }
 };
 
-// update a  women-chef booking Post
+// update a  women-chef booked Post
 export const updateWomenChefBookingPost = async (
   req: Request,
   res: Response,
@@ -76,11 +76,11 @@ export const updateWomenChefBookingPost = async (
 ) => {
   try {
     const postId = req.params.id;
-    const bookPost = await WomenChefBook.findById(postId);
+    const bookedPost = await WomenChefBook.findById(postId);
 
-    if (!bookPost) {
+    if (!bookedPost) {
       res.status(400).json({
-        message: "Women-chef booking post not found",
+        message: "Women-chef booked post not found",
       });
     }
 
@@ -90,7 +90,7 @@ export const updateWomenChefBookingPost = async (
     );
 
     res.status(200).json({
-      message: "Women-chef booking post updated successfully",
+      message: "Women-chef booked post updated successfully",
       data: updatedBookedPost,
     });
   } catch (err) {
@@ -98,7 +98,7 @@ export const updateWomenChefBookingPost = async (
   }
 };
 
-// delete  women-chef booking Post
+// delete  women-chef booked Post
 export const  deleteWomenChefBookingPost = async (
   req: Request,
   res: Response,
@@ -109,12 +109,12 @@ export const  deleteWomenChefBookingPost = async (
 
     if (!bookedPost) {
       res.status(400).json({
-        message: "women-chef booking post not found",
+        message: "Women-chef booked post not found",
       });
     }
 
     res.status(200).json({
-      message: "Women-chef booking Post Deleted Successfully",
+      message: "Women-chef Booked Post Deleted Successfully",
     });
   } catch (err) {
     next(err);

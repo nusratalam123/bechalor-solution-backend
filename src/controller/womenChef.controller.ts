@@ -12,7 +12,7 @@ export const getAllWomenChefPosts = async (
     const posts = await WomenChef.find({}).sort({ name: -1 });
 
     res.status(200).json({
-      message: "women chef posts create successfully",
+      message: "Women chef posts create successfully",
       data: posts,
     });
   } catch (err) {
@@ -62,7 +62,7 @@ export const   getAllWomenChefPostSearchByArea = async (
 
 
     res.status(200).json({
-      message: "women chef post get successfully",
+      message: "Women chef post get successfully",
       data: posts,
     });
   } catch (err) {
@@ -88,7 +88,7 @@ export const getSingleWomenChefPostSearchByArea = async (
 
 
     res.status(200).json({
-      message: "women chef post get successfully",
+      message: "Women chef post get successfully",
       data: posts,
     });
   } catch (err) {
@@ -167,7 +167,7 @@ export const createWomenChef = async (
     const post = await WomenChef.create(data);
 
     res.status(201).json({
-      message: "womenChef post created Successfully",
+      message: "Women chef post created Successfully",
       data: post,
     });
   } catch (err) {
@@ -187,15 +187,15 @@ export const updateWomenChefProfile = async (
 
     if (!post) {
       res.status(400).json({
-        message: "User not found",
+        message: "Women chef post not found",
       });
     }
 
-    const updatedUser = await WomenChef.findByIdAndUpdate(postId, req.body);
+    const updatedPost = await WomenChef.findByIdAndUpdate(postId, req.body);
 
     res.status(200).json({
       message: "Women chef post updated successfully",
-      data: updatedUser,
+      data: updatedPost,
     });
   } catch (err) {
     next(err);

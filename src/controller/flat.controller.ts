@@ -9,11 +9,11 @@ export const getAllFlatPosts = async (
   next: NextFunction,
 ) => {
   try {
-    const flats= await Flat.find({}).sort({ tolate_date: -1 });
+    const flatPosts = await Flat.find({}).sort({ createdAt: -1 });
 
     res.status(200).json({
       message: "Flat posts get successfully",
-      data: flats,
+      data: flatPosts,
     });
   } catch (err) {
     next(err);
@@ -27,8 +27,8 @@ export const getSingleFlatPost= async (
   next: NextFunction,
 ) => {
   try {
-    const flat = await Flat.findOne({ _id: req.params.id });
-    if (!flat) {
+    const flatPost = await Flat.findOne({ _id: req.params.id });
+    if (!flatPost) {
       res.status(400).json({
         message: "flat Post Not found",
       });
@@ -36,7 +36,7 @@ export const getSingleFlatPost= async (
 
     res.status(200).json({
       message: "flat post get successfully",
-      data: flat,
+      data: flatPost,
     });
   } catch (err) {
     next(err);
@@ -57,12 +57,12 @@ export const   getAllFlatPostSearchByArea = async (
       return res.status(400).json({ message: 'Missing search flat post' });
     }
 
-    const posts = await Flat.find({area_name: area }); // Find by type
+    const flatPosts = await Flat.find({area_name: area }); // Find by type
 
 
     res.status(200).json({
       message: "Flat post get successfully",
-      data: posts,
+      data: flatPosts,
     });
   } catch (err) {
     next(err);
@@ -83,12 +83,12 @@ export const   getSingleFlatPostSearchByArea = async (
       return res.status(400).json({ message: 'Missing search flat post' });
     }
 
-    const posts = await Flat.find({area_name: area ,_id:id}); // Find by type
+    const flatPosts = await Flat.find({area_name: area ,_id:id}); // Find by type
 
 
     res.status(200).json({
       message: "Flat post get successfully",
-      data: posts,
+      data: flatPosts,
     });
   } catch (err) {
     next(err);
@@ -109,12 +109,12 @@ export const  getAllFlatPostSearchByAmmount = async (
       if (!ammount) {
         return res.status(400).json({ message: 'Missing search flat post' });
       }
-      const posts = await Flat.find({flat_cost: ammount}); // Find by type
+      const flatPosts = await Flat.find({flat_cost: ammount}); // Find by type
   
   
       res.status(200).json({
         message: "Flat post get successfully",
-        data: posts,
+        data: flatPosts,
       });
     } catch (err) {
       next(err);
@@ -135,12 +135,12 @@ export const  getSingleFlatPostSearchByAmmount = async (
       if (!ammount) {
         return res.status(400).json({ message: 'Missing search flat post' });
       }
-      const posts = await Flat.find({flat_cost: ammount,_id:id}); // Find by type
+      const flatPosts = await Flat.find({flat_cost: ammount,_id:id}); // Find by type
   
   
       res.status(200).json({
         message: "Flat post get successfully",
-        data: posts,
+        data: flatPosts,
       });
     } catch (err) {
       next(err);
@@ -163,11 +163,11 @@ export const createFlatPost = async (
         });
       }
   
-      const flat = await Flat.create(data);
+      const flatPost = await Flat.create(data);
   
       res.status(201).json({
         message: "Flat Post created Successfully",
-        data: flat,
+        data: flatPost,
       });
     } catch (err) {
       next(err);
@@ -182,9 +182,9 @@ export const updateFlatPost = async (
   ) => {
     try {
       const postId = req.params.id;
-      const post = await Flat.findById(postId);
+      const flatPost = await Flat.findById(postId);
   
-      if (!post) {
+      if (!flatPost) {
         res.status(400).json({
           message: "Flat post not found",
         });

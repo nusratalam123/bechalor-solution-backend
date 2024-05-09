@@ -8,11 +8,11 @@ export const getAllMessPosts = async (
   next: NextFunction,
 ) => {
   try {
-    const messes= await Mess.find({}).sort({ tolate_date: -1 });
+    const messPosts= await Mess.find({}).sort({ tolate_date: -1 });
 
     res.status(200).json({
       message: "Mess posts get successfully",
-      data: messes,
+      data: messPosts,
     });
   } catch (err) {
     next(err);
@@ -26,8 +26,8 @@ export const getSinglePost= async (
   next: NextFunction,
 ) => {
   try {
-    const mess = await Mess.findOne({ _id: req.params.id });
-    if (!mess) {
+    const messPost = await Mess.findOne({ _id: req.params.id });
+    if (!messPost) {
       res.status(400).json({
         message: "Mess Post Not found",
       });
@@ -35,7 +35,7 @@ export const getSinglePost= async (
 
     res.status(200).json({
       message: "Mess post get successfully",
-      data: mess,
+      data: messPost,
     });
   } catch (err) {
     next(err);
@@ -56,12 +56,12 @@ export const   getAllPostSearchByArea = async (
       return res.status(400).json({ message: 'Missing search Mess post' });
     }
 
-    const posts = await Mess.find({area_name: area }); // Find by type
+    const messPosts = await Mess.find({area_name: area }); // Find by type
 
 
     res.status(200).json({
       message: "Mess post get successfully",
-      data: posts,
+      data: messPosts,
     });
   } catch (err) {
     next(err);
@@ -83,12 +83,12 @@ export const  getAllPostSearchByAmmount = async (
         return res.status(400).json({ message: 'Missing search Mess post' });
       }
   
-      const posts = await Mess.find({mess_cost: ammount}); // Find by type
+      const messPosts = await Mess.find({mess_cost: ammount}); // Find by type
   
   
       res.status(200).json({
         message: "Mess post get successfully",
-        data: posts,
+        data: messPosts,
       });
     } catch (err) {
       next(err);
@@ -114,7 +114,7 @@ export const createMessPost = async (
       const mess = await Mess.create(data);
   
       res.status(201).json({
-        message: "Post created Successfully",
+        message: "Mess post created Successfully",
         data: mess,
       });
     } catch (err) {
@@ -130,9 +130,9 @@ export const updateMessPost = async (
   ) => {
     try {
       const postId = req.params.id;
-      const post = await Mess.findById(postId);
+      const messPost = await Mess.findById(postId);
   
-      if (!post) {
+      if (!messPost) {
         res.status(400).json({
           message: "Mess post not found",
         });

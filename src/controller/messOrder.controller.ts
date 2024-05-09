@@ -1,49 +1,49 @@
 import { NextFunction, Request, Response } from "express";
 import MessBook from "./../model/messOrder.model";
 
-// get all mess booking post
+// get all mess booked post
 export const getAllMessBookingPosts = async (
   _: Request,
   res: Response,
   next: NextFunction,
 ) => {
   try {
-    const messes = await MessBook.find({}).sort({ booking_date: 1 });
+    const messBookedPosts = await MessBook.find({}).sort({ booking_date: 1 });
 
     res.status(200).json({
-      message: "Mess booking posts get successfully",
-      data: messes,
+      message: "Mess booked posts get successfully",
+      data: messBookedPosts,
     });
   } catch (err) {
     next(err);
   }
 };
 
-// get single mess booking post
-export const  getSingleMessBookingPost = async (
+// get single mess booked post
+export const getSingleMessBookingPost = async (
   req: Request,
   res: Response,
   next: NextFunction,
 ) => {
   try {
-    const mess = await MessBook.findOne({ _id: req.params.id });
-    if (!mess) {
+    const messBookedPost = await MessBook.findOne({ _id: req.params.id });
+    if (!messBookedPost) {
       res.status(400).json({
-        message: "Mess booking Post Not found",
+        message: "Mess booked Post Not found",
       });
     }
 
     res.status(200).json({
-      message: "Mess booking post get successfully",
-      data: mess,
+      message: "Mess booked post get successfully",
+      data: messBookedPost,
     });
   } catch (err) {
     next(err);
   }
 };
 
-// get single mess booking post search by area
-export const   getAllMessBookingPostSearchByArea = async (
+// get single mess booked post search by area
+export const getAllMessBookingPostSearchByArea = async (
   req: Request,
   res: Response,
   next: NextFunction,
@@ -53,21 +53,23 @@ export const   getAllMessBookingPostSearchByArea = async (
     //console.log(area);
 
     if (!area) {
-      return res.status(400).json({ message: "Missing search Mess booking post" });
+      return res
+        .status(400)
+        .json({ message: "Missing search Mess booked post" });
     }
 
-    const posts = await MessBook.find({ booking_area: area }); // Find by type
+    const messBookedPosts = await MessBook.find({ booking_area: area }); // Find by type
 
     res.status(200).json({
-      message: "Mess booking post get successfully",
-      data: posts,
+      message: "Mess booked post get successfully",
+      data: messBookedPosts,
     });
   } catch (err) {
     next(err);
   }
 };
 
-// create new Mess booking Post
+// create new Mess booked Post
 export const createMessBookingPost = async (
   req: Request,
   res: Response,
@@ -82,61 +84,64 @@ export const createMessBookingPost = async (
       });
     }
 
-    const mess = await MessBook.create(data);
+    const messBookedPost = await MessBook.create(data);
 
     res.status(201).json({
-      message: " booking post created Successfully",
-      data: mess,
+      message: " Mess booked post created Successfully",
+      data: messBookedPost,
     });
   } catch (err) {
     next(err);
   }
 };
 
-// update a Mess booking Post
-export const   updateMessBookingPost = async (
+// update a Mess booked Post
+export const updateMessBookingPost = async (
   req: Request,
   res: Response,
   next: NextFunction,
 ) => {
   try {
     const postId = req.params.id;
-    const post = await MessBook.findById(postId);
+    const messBookedPost = await MessBook.findById(postId);
 
-    if (!post) {
+    if (!messBookedPost) {
       res.status(400).json({
-        message: "Mess booking post not found",
+        message: "Mess booked post not found",
       });
     }
 
-    const updatedMessPost = await MessBook.findByIdAndUpdate(postId, req.body);
+    const updatedMessBookedPost = await MessBook.findByIdAndUpdate(
+      postId,
+      req.body,
+    );
 
     res.status(200).json({
-      message: "Mess booking post updated successfully",
-      data: updatedMessPost,
+      message: "Mess booked post updated successfully",
+      data: updatedMessBookedPost,
     });
   } catch (err) {
     next(err);
   }
 };
 
-// delete Mess booking Post
-export const   deleteMessBookingPost = async (
+// delete Mess booked Post
+export const deleteMessBookingPost = async (
   req: Request,
   res: Response,
   next: NextFunction,
 ) => {
   try {
-    const messPost = await MessBook.findByIdAndDelete(req.params.id);
+    const messBookedPost = await MessBook.findByIdAndDelete(req.params.id);
 
-    if (!messPost) {
+    if (!messBookedPost) {
       res.status(400).json({
-        message: "Mess booking post not found",
+        message: "Mess booked post not found",
       });
     }
 
     res.status(200).json({
-      message: "Mess booking Post Deleted Successfully",
+      message: "Mess booked post Deleted Successfully",
     });
   } catch (err) {
     next(err);

@@ -8,7 +8,7 @@ export const getAllTutionPosts = async (
   next: NextFunction,
 ) => {
   try {
-    const posts = await Tution.find({}).sort({ name: -1 });
+    const posts = await Tution.find({}).sort({ createdAt: -1 });
 
     res.status(200).json({
       message: "Tution posts create successfully",
@@ -336,7 +336,7 @@ export const updateTutionPost = async (
 
     if (!post) {
       res.status(400).json({
-        message: "post not found",
+        message: "Tution post not found",
       });
     }
 
@@ -374,30 +374,3 @@ export const deleteTutionPost = async (
   }
 };
 
-// update women Chef Post status
-export const updateUserStatus = async (
-  req: Request,
-  res: Response,
-  next: NextFunction,
-) => {
-  try {
-    const womenChefPost = await Tution.findByIdAndUpdate(
-      req.params.id,
-      { $set: { status: req.body.status } },
-      { new: true },
-    );
-
-    if (!womenChefPost) {
-      res.status(400).json({
-        message: "women chef post not found",
-      });
-    }
-
-    res.status(200).json({
-      message: "Status changed successfully",
-      data: womenChefPost,
-    });
-  } catch (err) {
-    next(err);
-  }
-};

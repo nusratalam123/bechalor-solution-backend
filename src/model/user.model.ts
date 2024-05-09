@@ -28,7 +28,7 @@ const userSchema = new mongoose.Schema(
     role: {
       type: String,
       default: "USER",
-      enum: ["USER", "SELLER"],
+      enum: ["USER", "OWNER"],
     },
     phone: {
       type: String,
@@ -58,11 +58,11 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: false,
     },
-    shippingAddress: {
+    owner_homeRegisterImage: {
       type: String,
       required: false,
     },
-    bio: {
+    NID: {
       type: String,
       required: false,
     },

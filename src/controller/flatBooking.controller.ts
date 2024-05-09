@@ -1,48 +1,48 @@
 import { NextFunction, Request, Response } from "express";
 import FlatBook from "./../model/flatOrder.model";
 
-// get all Flat booking post
+// get all Flat booked post
 export const getAllFlatBookingPosts = async (
   _: Request,
   res: Response,
   next: NextFunction,
 ) => {
   try {
-    const posts = await FlatBook.find({}).sort({ tolate_date: -1 });
+    const flatBookedPosts = await FlatBook.find({}).sort({ tolate_date: -1 });
 
     res.status(200).json({
-      message: "Flat booking posts get successfully",
-      data: posts,
+      message: "Flat booked posts get successfully",
+      data: flatBookedPosts,
     });
   } catch (err) {
     next(err);
   }
 };
 
-// get single Flat booking post
+// get single Flat booked post
 export const getSingleFlatBookingPost = async (
   req: Request,
   res: Response,
   next: NextFunction,
 ) => {
   try {
-    const post = await FlatBook.findOne({ _id: req.params.id });
-    if (!post) {
+    const flatBookedPost = await FlatBook.findOne({ _id: req.params.id });
+    if (!flatBookedPost) {
       res.status(400).json({
-        message: "flat booking Post Not found",
+        message: "Flat booked Post Not found",
       });
     }
 
     res.status(200).json({
-      message: "flat booking post get successfully",
-      data: post,
+      message: "Flat booked post get successfully",
+      data: flatBookedPost,
     });
   } catch (err) {
     next(err);
   }
 };
 
-// get all flat booking post search by area
+// get all flat booked post search by area
 export const getAllFlatBookingPostSearchByArea = async (
   req: Request,
   res: Response,
@@ -53,21 +53,23 @@ export const getAllFlatBookingPostSearchByArea = async (
     //console.log(area);
 
     if (!area) {
-      return res.status(400).json({ message: "Missing search flat post" });
+      return res
+        .status(400)
+        .json({ message: "Missing search flat booked post" });
     }
 
-    const posts = await FlatBook.find({ booking_area: area }); // Find by type
+    const flatBookedPosts = await FlatBook.find({ booking_area: area }); // Find by type
 
     res.status(200).json({
-      message: "Flat booking post get successfully",
-      data: posts,
+      message: "Flat booked post get successfully",
+      data: flatBookedPosts,
     });
   } catch (err) {
     next(err);
   }
 };
 
-// get single flat booking post search by area
+// get single flat booked post search by area
 export const getSingleFlatBookingPostSearchByArea = async (
   req: Request,
   res: Response,
@@ -81,21 +83,24 @@ export const getSingleFlatBookingPostSearchByArea = async (
     if (!area) {
       return res
         .status(400)
-        .json({ message: "Missing search flat booking post" });
+        .json({ message: "Missing search flat booked post" });
     }
 
-    const posts = await FlatBook.find({ booking_area: area, _id: id }); // Find by type
+    const flatBookedPosts = await FlatBook.find({
+      booking_area: area,
+      _id: id,
+    }); // Find by type
 
     res.status(200).json({
       message: "Flat booking post get successfully",
-      data: posts,
+      data: flatBookedPosts,
     });
   } catch (err) {
     next(err);
   }
 };
 
-// create new flat booking Post
+// create new flat booked Post
 export const createFlatBookingPost = async (
   req: Request,
   res: Response,
@@ -110,18 +115,18 @@ export const createFlatBookingPost = async (
       });
     }
 
-    const flat = await FlatBook.create(data);
+    const flatBookedPost = await FlatBook.create(data);
 
     res.status(201).json({
-      message: "Flat booking Post created Successfully",
-      data: flat,
+      message: "Flat booked Post created Successfully",
+      data: flatBookedPost,
     });
   } catch (err) {
     next(err);
   }
 };
 
-// update a flat booking Post
+// update a flat booked Post
 export const updateFlatBookingPost = async (
   req: Request,
   res: Response,
@@ -129,45 +134,45 @@ export const updateFlatBookingPost = async (
 ) => {
   try {
     const postId = req.params.id;
-    const post = await FlatBook.findById(postId);
+    const flatBookedPost = await FlatBook.findById(postId);
 
-    if (!post) {
+    if (!flatBookedPost) {
       res.status(400).json({
-        message: "Flat booking post not found",
+        message: "Flat booked post not found",
       });
     }
 
-    const updatedFlatBookingPost = await FlatBook.findByIdAndUpdate(
+    const updatedFlatBookedPost = await FlatBook.findByIdAndUpdate(
       postId,
       req.body,
     );
 
     res.status(200).json({
-      message: "Flat booking post updated successfully",
-      data: updatedFlatBookingPost,
+      message: "Flat booked post updated successfully",
+      data: updatedFlatBookedPost,
     });
   } catch (err) {
     next(err);
   }
 };
 
-// delete Flat booking Post
+// delete Flat booked Post
 export const deleteFlatBokingPost = async (
   req: Request,
   res: Response,
   next: NextFunction,
 ) => {
   try {
-    const flatPost = await FlatBook.findByIdAndDelete(req.params.id);
+    const flatBookedPost = await FlatBook.findByIdAndDelete(req.params.id);
 
-    if (!flatPost) {
+    if (!flatBookedPost) {
       res.status(400).json({
-        message: "Flat booking post not found",
+        message: "Flat booked post not found",
       });
     }
 
     res.status(200).json({
-      message: "Flat booking Post Deleted Successfully",
+      message: "Flat Booked Post Deleted Successfully",
     });
   } catch (err) {
     next(err);
