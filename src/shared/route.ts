@@ -10,6 +10,7 @@ import womenChefRoutes from "./../routes/womenChef.route";
 import womenBookedRoutes from "./../routes/womenChefBooking.route";
 import vehicleBookedRoutes from "./../routes/vehicleBooked.route";
 import tutionBookedRoutes from "./../routes/tutionBooked.route";
+import reviewRoutes from "./../routes/review.route";
 
 
 
@@ -32,6 +33,7 @@ router.use("/flat-book", flatBookedRoutes);
 router.use("/womenChef-book", womenBookedRoutes);
 router.use("/vehicle-book", vehicleBookedRoutes);
 router.use("/tution-book", tutionBookedRoutes);
+router.use("/review", reviewRoutes);
 
 
 // Handle not found
