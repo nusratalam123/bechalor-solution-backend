@@ -12,8 +12,6 @@ import vehicleBookedRoutes from "./../routes/vehicleBooked.route";
 import tutionBookedRoutes from "./../routes/tutionBooked.route";
 import reviewRoutes from "./../routes/review.route";
 
-
-
 const router = Router();
 
 // Root route
@@ -34,7 +32,6 @@ router.use("/womenChef-book", womenBookedRoutes);
 router.use("/vehicle-book", vehicleBookedRoutes);
 router.use("/tution-book", tutionBookedRoutes);
 router.use("/review", reviewRoutes);
-
 
 // Handle not found
 router.use((req, res, next) => {
