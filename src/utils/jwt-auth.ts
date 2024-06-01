@@ -8,10 +8,7 @@ import secrets from "../config/secret";
 export async function jwtAuth(req: Request, res: Response, next: NextFunction) {
   if (
     req.path.endsWith("/login") ||
-    req.path.endsWith("/signup") ||
-    req.path.match(/^\/api\/v1\/product\/.+/) || // PRODUCT REGEX
-    req.path.match(/^\/api\/v1\/category\/.+/) || // Category REGEX
-    req.path.match(/^\/api\/v1\/banner\/.+/) // Category REGEX
+    req.path.endsWith("/signup") 
   ) {
     next();
     return;
